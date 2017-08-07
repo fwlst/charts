@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  font-size: 12px;
+}
+.chart_wap {
+  width: 90%;
+  height: 200px;
+  background: #fff;
+  position: absolute;
+  left: 5%;
+  top: 50%;
+  margin-top: -100px;
+}
+.chart_wap canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}

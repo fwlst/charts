@@ -1,0 +1,18 @@
+/*  基本图文组件样式  */
+.h5_component {
+  background-size: 100%;
+  background-repeat: no-repeat;
+  position: absolute;
+}
+.h5_component {
+  transition: all 1s;
+  -webkit-transition: all 1s;
+}
+.component_base_load {
+  opacity: 1;
+  top: 50px !important;
+}
+.component_base_leave {
+  opacity: 0;
+  top: 500px !important;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="uc-fitscreen=yes,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <title>折线图2</title>
+    <link href="css/charts.css" rel="stylesheet" type="text/css">
+    <link href="css/componentBase.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<div class="chart_wap">
+
+</div>
+
+
+<script src="js/zepto.min.js"></script>
+<script src="js/componentBase.js"></script>
+<script src="js/charts.js"></script>
+<script>
+    let $chart_wap = $('.chart_wap');
+    let cfg = {
+            width: $chart_wap.width(),                  //canvas宽度
+            height: $chart_wap.height(),                //canvas高度
+            data: [
+                {date: "12.23", yield10Th: "9.2005", yieldRate: "0.015"},
+                {date: "12.22", yield10Th: "1.5337", yieldRate: "0.025"},
+                {date: "12.21", yield10Th: "1.5339", yieldRate: "0.035"},
+                {date: "12.20", yield10Th: "1.5682", yieldRate: "0.075"},
+                {date: "12.19", yield10Th: "1.5682", yieldRate: "0.055"},
+                {date: "12.18", yield10Th: "1.5682", yieldRate: "0.065"},
+                {date: "12.17", yield10Th: "1.5682", yieldRate: "0.075"}
+            ],                                          //绘图数据
+            xAxis: {
+                lineWidth: 1,                           //X轴线宽度
+                lineNubX: 6,                            //X轴等分数量
+                rightSpace: 30,                         //canvas右边留白宽度（防止X轴最后一个刻度只显示一半）
+                axisColor: 'rgba(213,213,213,1)',       //X轴颜色
+                lineDashed: true,                       //X轴是否为虚线
+                XScale: 'date',                         //X轴显示的简直对名称
+            },
+            yAxis: {
+                lineWidth: 1,                           //Y轴线宽度
+                axisColor: 'rgba(213,213,213,1)',       //Y轴线宽度
+                lineDashed: false,                      //Y轴是否为虚线
+                YScale: 'yieldRate'                     //X轴显示的简直对名称
+            },
+            point: {
+                pointColor: 'rgba(234,82,26,1)',        //圆点颜色
+                pointSize: 5                            //圆点半径大小
+            },
+            shadow: {
+                shadowLineColor: 'rgba(234,82,26,0.8)', //连线颜色
+                shadowColor: 'rgba(234,82,26,0.1)',     //阴影部分颜色
+            },
+            tip: {
+                tipCss: {                               //提示框样式
+                    borderRadius: '5px',
+                    backgroundColor: 'rgba(234,82,26,1)',
+                    color: '#fff'
+                },
+                triangle: true                          //是否有箭头
+            }
+        },
+        myName = '.chart_wap';                          //canvas父容器
+    let polyLine = new ComponentPolyLine(myName, cfg);
+    $chart_wap.append(polyLine);
+
+    let leave = true;
+    $('body').on('click', function () {
+        leave = !leave;
+        $('.h5_component').trigger(leave ? 'onLeave' : 'onLoad')
+    })
+
+</script>
+
+
+</body>
+</html>
