@@ -145,7 +145,7 @@
                 textArr = [];
             for (let x = 0; x < stepX - 1; x++) {
                 let y = this.xSpace * x + this.xSpace,
-                    text = x != 0 ? this.toDecimal2(yStep * ((stepY - 2) - x)) : '',
+                    text = x != 0 ? this.toDecimal2(yStep * ((stepX - 1) - x)) : '',
                     textWidth = this.ctx.measureText(text).width,
                     textX = (ySpace - textWidth) / 2,
                     textY = y - this.xSpace + 5;
@@ -296,8 +296,9 @@
                 setTimeout(function () {
                     s += 0.01;
                     this.drawCoordinate(s);
+                    console.log(s);
                     this.shadow();
-                    if (i == 99) {
+                    if (s > 1 || s == 1) {
                         this.bindEvent();
                     }
                 }.bind(this), i * 10);
