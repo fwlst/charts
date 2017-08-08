@@ -21,7 +21,8 @@
                 tipCss: null,
                 triangle: null,
                 triangleColor: null
-            }
+            },
+            showAn: cfg.showAn || false
 
         };
         if (this.cfg.data) {
@@ -291,17 +292,22 @@
 
         },
         increaseAn: function () {
-            let s = 0;
-            for (let i = 0; i < 100; i++) {
-                setTimeout(function () {
-                    s += 0.01;
-                    this.drawCoordinate(s);
-                    console.log(s);
-                    this.shadow();
-                    if (s > 1 || s == 1) {
-                        this.bindEvent();
-                    }
-                }.bind(this), i * 10);
+            if(this.cfg.showAn){
+                let s = 0;
+                for (let i = 0; i < 100; i++) {
+                    setTimeout(function () {
+                        s += 0.01;
+                        this.drawCoordinate(s);
+                        this.shadow();
+                        if (s > 1 || s == 1) {
+                            this.bindEvent();
+                        }
+                    }.bind(this), i * 10);
+                }
+            }else {
+                this.drawCoordinate(1);
+                this.shadow();
+                this.bindEvent();
             }
         },
         bindEvent: function () {
@@ -314,9 +320,13 @@
                             top = data.y - 40,
                             left = data.x - 23;
                         this.$tip.text(text);
+                        if(!this.cfg.shadow) {
+                            this.$tip.css({
+                                transition: 'all 1s',
+                                webkitTransition: 'all 1s',
+                            });
+                        }
                         this.$tip.css({
-                            transition: 'all 1s',
-                            webkitTransition: 'all 1s',
                             top: top,
                             left: left,
                         });
